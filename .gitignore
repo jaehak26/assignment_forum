@@ -39,3 +39,4 @@ out/
 application-aws.properties
 testController.java
 UserRepositoryTest.java
+testView.jsp
