@@ -8,19 +8,20 @@
     <title>Hello World</title>
 </head>
 <body>
-    <h2>Hello World</h2>
+    <h2>로그인</h2>
+    <%
+        request.setCharacterEncoding("UTF-8");
+        Object msg = request.getAttribute("msg");
+    %>
     <hr>
-    <form name="register" action="/test/register" method="post">
-        <label for="userId">아이디:</label>
-        <input type="text" name="userId" id="userId"/>
-        <label for="userPwd">비밀번호:</label>
-        <input type="password" name="userPwd" id="userPwd"/>
-        <label for="userEmail">이메일:</label>
-        <input type="email" name="userEmail" id="userEmail"/>
-        <label for="userPhone">전화번호:</label>
-        <input type="text" name="userPhone" id="userPhone"/>
+    <form id="userLogin" name="userLogin" action="/user/login" method="post">
+        <label for="loginId">아이디:</label>
+        <input type="text" name="loginId" id="loginId"/><br>
+        <label for="loginPwd">비밀번호:</label>
+        <input type="password" name="loginPwd" id="loginPwd"/><br>
+        <input type="submit" value="로그인"/>
     </form>
     <hr>
-    메시지: ${msg}
+
 </body>
 </html>
