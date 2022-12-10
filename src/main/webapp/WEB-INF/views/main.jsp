@@ -24,13 +24,18 @@
         <a href="/login">로그인</a>
         <a href="/userRegister">회원가입</a>
     <%} else{%>
-        <span class="printUserId">${afterLoginId}님, 안녕하세요</span>
-        <a href="/main">로그아웃</a>
+        <span class="printUserId">${afterLoginId}님, 안녕하세요
+        <a href="/main">로그아웃</a></span>
     <%}%>
     <hr>
 
-    <div class="">
-
+    <div id="mainBoard">
+        //글 목록
     </div>
+
+    <form action="" method="post">
+        <input name="afterLoginId" type="text" style="display: none;" value=${afterLoginId}/>
+        <input type="submit" value="글쓰기"/>
+    </form>
 </body>
 </html>
