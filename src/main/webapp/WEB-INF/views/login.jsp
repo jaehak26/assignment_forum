@@ -6,13 +6,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello World</title>
+    <%
+        request.setCharacterEncoding("UTF-8");
+        Object inexist = request.getAttribute("inexist");
+        if(inexist == "true"){%>
+    <script>
+        alert("아이디나 비밀번호가 일치하지 않습니다.");
+    </script>
+    <%
+        }
+    %>
 </head>
 <body>
     <h2>로그인</h2>
-    <%
-        request.setCharacterEncoding("UTF-8");
-        Object msg = request.getAttribute("msg");
-    %>
+
     <hr>
     <form id="userLogin" name="InputLoginModel" action="/user/login" method="post"
     >
