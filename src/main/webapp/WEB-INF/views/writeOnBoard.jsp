@@ -18,20 +18,21 @@
 <a href="/main">로그아웃</a></span>
 <hr>
 
-<form action="" method="post">
+<form action="/writeContent" method="post">
     <label for="writingTitle">글 제목: </label>
     <input id="writingTitle" name="writingTitle" type="text"
-           style="width:300px;"/>
+           style="width:400px;"><br>
     <label for="writingContent">글 내용: </label>
     <input id="writingContent" name="writingContent" type="text"
-    style="width:300px; height: 300px;"/>
-    <input name="afterLoginId" type="text" style="display: none;" value=${afterLoginId}/>
-    <input type="submit" value="글 작성"/>
+    style="width:400px; height: 400px;">
+    <input name="afterLoginId" type="text" style="display: none;" value=${afterLoginId}>
+    <br>
+    <input type="submit" value="글 작성">
 </form>
-
-<form action="/main/afterLogin" method="post">
-    <input name="afterLoginId" type="text" style="display: none;" value=${afterLoginId}/>
-    <input type="submit" value="글 목록"/>
+<br>
+<form action="/main/afterLogin" method="get">
+    <input name="afterLoginId" type="text" style="display: none;" value=${afterLoginId}>
+    <input type="submit" value="글 목록">
 </form>
 </body>
 </html>

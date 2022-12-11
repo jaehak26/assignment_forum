@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +34,7 @@ public class UserController {
 
     @PostMapping("/user/login")
     //InputLoginModel is form data
-    public String userLogin(InputLoginModel loginModel, Model model){
+    public String userLogin(InputLoginModel loginModel, RedirectAttributes model){
 
         String afterLoginId = userLoginService.actionLogin(loginModel);
 
@@ -45,25 +46,23 @@ public class UserController {
             return "login";
         }
 
-        model.addAttribute("inexist", inexist);
         model.addAttribute("afterLoginId", afterLoginId);
 
-        return "main";
+        System.out.println(model);
+        return "redirect:/main/afterLogin";
     }
 
-    public ModelAndView userRegister(InputUserRegisterModel registerModel){
+    public String userRegister(InputUserRegisterModel registerModel, RedirectAttributes model){
 
         String isUserExist = userRegisterService.isExistUser(registerModel);
 
         if(isUserExist=="true"){
-            ModelAndView userRegisterView = new ModelAndView("userRegister");
-            userRegisterView.addObject("isUserExist",isUserExist);
-            return userRegisterView;
+            model.addAttribute("isUserExist",isUserExist);
+            return "userRegister";
         }
 
         userRegisterService.actionUserRegister(registerModel);
 
-        ModelAndView mainView = new ModelAndView("main");
-        return mainView;
+        return "redirect:/main";
     }
 }

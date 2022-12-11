@@ -21,20 +21,21 @@
 
 <div>
     <div>
-        ${readingTitle}
+        제목: ${readingTitle}
     </div>
     <div>
-        ${readingContent}
+        글 내용: ${readingContent}
     </div>
 </div>
 
-<form action="" method="post">
-    <input name="readingTitle" type="text" style="display: none;" value=${readingTitle}/>
-    <input name="readingContent" type="text" style="display: none;" value=${readingContent}/>
-    <input name="afterLoginId" type="text" style="display: none;" value=${afterLoginId}/>
-    <input type="submit" value="글 목록" formaction="/main/afterLogin"/>
-    <input type="submit" value="글 수정" formaction=""/>
-    <input type="submit" value="글 삭제" formaction=""/>
+<form>
+    <input name="readingTitle" type="text" style="display: none;" value=${readingTitle}>
+    <input name="readingContent" type="text" style="display: none;" value=${readingContent}>
+    <input name="afterLoginId" type="text" style="display: none;" value=${afterLoginId}>
+    <input name="contentId" type="text" style="display: none;" value=${contentId}>
+    <input type="submit" value="글 목록" formmethod="get" formaction="/main/afterLogin">
+    <input type="submit" value="글 수정" formmethod="post" formaction="">
+    <input type="submit" value="글 삭제" formmethod="post" formaction="">
 </form>
 
 

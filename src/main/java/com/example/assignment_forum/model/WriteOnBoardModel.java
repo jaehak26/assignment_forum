@@ -8,5 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class WriteOnBoardModel {
-
+    private String writingTitle;
+    private String writingContent;
+    private String afterLoginId;
 }

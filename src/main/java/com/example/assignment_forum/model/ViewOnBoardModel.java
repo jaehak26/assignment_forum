@@ -8,4 +8,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ViewOnBoardModel {
+    private String readingTitle;
+    private String readingContent;
+    private String afterLoginId;
+    private String contentId;
 }

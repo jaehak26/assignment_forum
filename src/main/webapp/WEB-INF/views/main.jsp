@@ -9,10 +9,18 @@
     <%  request.setCharacterEncoding("UTF-8");
         Object afterLoginId = request.getAttribute("afterLoginId");
         Object isUserExist = request.getAttribute("isUserExist");
+        Object writeBeforeLogin = request.getAttribute("writeBeforeLogin");
+        Object writingEntityList = request.getAttribute("writingEntityList");
         if(isUserExist == "false"){ %>
         <script>
             alert("회원가입이 완료되었습니다.");
         </script>
+    <%
+        }
+        if(writeBeforeLogin=="false"){ %>
+    <script>
+        alert("글을 쓰기 위해서는 로그인을 해야합니다.");
+    </script>
     <%
         }
     %>
@@ -31,11 +39,28 @@
 
     <div id="mainBoard">
         //글 목록
+        ${writingEntityList}
+        <div id="mainContentTable">
+            <table>
+                <thead>
+                <tr>
+                    <td>글 번호</td>
+                    <td>글 제목</td>
+                    <td>아이디</td>
+                </tr>
+                </thead>
+                <tbody id="mainContentBody">
+
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <form action="" method="post">
+    <form action="/writeOnBoard" method="post">
         <input name="afterLoginId" type="text" style="display: none;" value=${afterLoginId}/>
         <input type="submit" value="글쓰기"/>
     </form>
+
+    <script src="mainContentBody.js" type="module"></script>
 </body>
 </html>

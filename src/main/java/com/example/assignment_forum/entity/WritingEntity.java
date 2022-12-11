@@ -1,8 +1,7 @@
 package com.example.assignment_forum.entity;
 
-import lombok.*;
-
 import javax.persistence.*;
+import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,6 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Table(name="tbl_writing")
 public class WritingEntity {
+
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
