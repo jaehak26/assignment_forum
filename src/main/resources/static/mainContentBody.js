@@ -9,7 +9,8 @@ var requestOptions = {
     redirect: 'follow'
 };
 
-const PAGE = 0;
+const PAGE = Number.parseInt(document.querySelector("#thisPage").innerHTML);
+console.log(PAGE)
 const SIZE = 2;
 let mainContentPageUrl = `http://localhost:8080/mainContent/page?page=${PAGE}&size=${SIZE}`;
 
@@ -21,12 +22,19 @@ let mainContentBody = document.querySelector("#mainContentTable");
 let mainContent = "<table><thead><tr><td>글 번호</td>"+
                     "<td>글 제목</td>" +
                     "<td>아이디</td></tr></thead><tbody>"
-console.log(document)
+
+let loginUser = document.querySelector("#printUserId").innerHTML;
+console.log(loginUser)
 // 글 번호,, 글 제목, 아이디 순
-for(let idx=0; idx<SIZE; idx++){
+for(let idx=0; idx<SIZE && idx<mainContentPageData.content.length; idx++){
     let innerContent = mainContentPageData.content[idx]
+    let aRef = `/viewContent?contentId=${innerContent.contentId}`
+    if(""+loginUser != ""){
+        aRef += `&afterLoginId=${loginUser}`
+    }
     mainContent += `<tr></tr><td>${innerContent.contentId}</td>`
-        +`<td><a href="">${innerContent.title}</a></td>`
+        +`<td><a href=${aRef}>`
+        +`${innerContent.title}</a></td>`
         +`<td>${innerContent.userId}</td></tr>`
 
 }

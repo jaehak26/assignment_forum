@@ -7,8 +7,10 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class WriteOnBoardModel {
+public class FixContentModel {
+    private String afterLoginId = "";
+    private long contentId;
     private String writingTitle;
     private String writingContent;
-    private String afterLoginId="";
+
 }

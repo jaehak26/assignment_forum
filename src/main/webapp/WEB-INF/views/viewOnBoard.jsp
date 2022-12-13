@@ -10,32 +10,59 @@
         Object afterLoginId = request.getAttribute("afterLoginId");
         Object isUserExist = request.getAttribute("isUserExist");
         Object contentId = request.getAttribute("contentId");
+        Object validFix = request.getAttribute("validFix");
+        if(validFix.equals("false")){ %>
+    <script>
+        alert("수정 권한이 없습니다.");
+    </script>
+    <%
+        }
     %>
 
 </head>
 <body>
+
 <h2>글 내용</h2>
-<span class="printUserId">${afterLoginId}님, 안녕하세요
-<a href="/main">로그아웃</a></span>
+<%  if(afterLoginId.equals("")){%>
+<a href="/login">로그인</a>
+<a href="/userRegister">회원가입</a>
+<%} else{%>
+<span>${afterLoginId}</span>님, 안녕하세요
+<a href="/main">로그아웃</a>
+<%}%>
 <hr>
 
 <div>
     <div>
+        글 번호: ${contentId}
+    </div>
+    <div>
         제목: ${readingTitle}
     </div>
+    <br>
+    <div>
+        작성자: ${writer}
+    </div>
+    <br>
     <div>
         글 내용: ${readingContent}
     </div>
 </div>
 
 <form>
-    <input name="readingTitle" type="text" style="display: none;" value=${readingTitle}>
-    <input name="readingContent" type="text" style="display: none;" value=${readingContent}>
     <input name="afterLoginId" type="text" style="display: none;" value=${afterLoginId}>
     <input name="contentId" type="text" style="display: none;" value=${contentId}>
     <input type="submit" value="글 목록" formmethod="get" formaction="/main/afterLogin">
-    <input type="submit" value="글 수정" formmethod="post" formaction="">
-    <input type="submit" value="글 삭제" formmethod="post" formaction="">
+</form>
+<form action="/fixContent" method="post">
+    <input name="afterLoginId" type="text" style="display: none;" value=${afterLoginId}>
+    <input name="contentId" type="text" style="display: none;" value=${contentId}>
+    <input type="submit" value="글 수정">
+</form>
+<form>
+    <input name="afterLoginId" type="text" style="display: none;" value=${afterLoginId}>
+    <input name="contentId" type="text" style="display: none;" value=${contentId}>
+    <input type="submit" value="글 삭제" formmethod="post" formaction="/deleteContent">
 </form>
 
 

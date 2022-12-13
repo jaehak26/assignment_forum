@@ -2,9 +2,11 @@ package com.example.assignment_forum.controller;
 
 
 import com.example.assignment_forum.entity.WritingEntity;
+import com.example.assignment_forum.model.MainModel;
 import com.example.assignment_forum.service.MainBoardService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,45 +29,46 @@ public class MainController {
     private MainBoardService mainBoardService;
 
     @RequestMapping("/main")
-    public String main1(@RequestParam(name="writeBeforeLogin",required = false)String writeBeforeLogin,
-                        @RequestParam(name="afterLoginId",required = false)String afterLoginId,
+    public String main1(MainModel mainModel,
                         Model model){
-        if(writeBeforeLogin!=null)
-            model.addAttribute("writeBeforeLogin",writeBeforeLogin);
 
-        if(afterLoginId!=null)
-            model.addAttribute("afterLoginId",afterLoginId);
+        model.addAttribute("writeBeforeLogin",mainModel.getWriteBeforeLogin());
+        model.addAttribute("afterLoginId",mainModel.getAfterLoginId());
+        model.addAttribute("isUserExist",mainModel.getIsUserExist());
 
 
         List<WritingEntity> writingEntityList = mainBoardService.mainBoard();
-        System.out.println(writingEntityList);
+        //System.out.println(writingEntityList);
         model.addAttribute("writingEntityList",writingEntityList);
 
-        System.out.println(afterLoginId);
+        Page<WritingEntity> writingEntityPage = mainBoardService.mainContentPage(mainModel.getPage(), mainModel.getSize());
+        model.addAttribute("totalPages",writingEntityPage.getTotalPages());
+        model.addAttribute("thisPage",mainModel.getPage());
+        System.out.println("afterLoginId: "+ mainModel.getAfterLoginId());
+        System.out.println("page: "+mainModel.getPage());
         return "main";
     }
 
     @GetMapping("/main/afterLogin")
-    public String main2(@RequestParam(name="afterLoginId",required = false)String afterLoginId,
+    public String main2(MainModel mainModel,
                         RedirectAttributes model){
-        if(afterLoginId!=null)
-            model.addFlashAttribute("afterLoginId",afterLoginId);
 
-        List<WritingEntity> writingEntityList = mainBoardService.mainBoard();
-        System.out.println(writingEntityList);
+        model.addFlashAttribute("mainModel",mainModel);
 
-        model.addAttribute("writingEntityList",writingEntityList);
+        System.out.println("model: "+ model);
         return "redirect:/main";
     }
 
     @GetMapping("/login")
-    public String userLogin1(){
+    public String userLogin1(Model model){
         System.out.println("login");
+        model.addAttribute("inexist","");
         return "login";
     }
 
     @GetMapping("/userRegister")
-    public String userRegister1(){
+    public String userRegister1(Model model){
+        model.addAttribute("isUserExist","");
         return "userRegister";
     }
 

@@ -7,7 +7,8 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ViewOnBoardModel {
-    private String afterLoginId="";
+public class ViewContentModel {
+    private String afterLoginId = "";
     private long contentId;
+    private String validFix="true";
 }

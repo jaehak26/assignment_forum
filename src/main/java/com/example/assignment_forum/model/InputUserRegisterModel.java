@@ -8,8 +8,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InputUserRegisterModel {
-    private String userId;
-    private String userPwd;
+    private String userId="";
+    private String userPwd="";
     private String userEmail;
     private String userPhone;
 }

@@ -20,18 +20,27 @@ public class WritingController {
     @PostMapping("/writeOnBoard")
     public  String beforeWriting(@RequestParam(name="afterLoginId",required = false)String afterLoginId,
                                  Model model, RedirectAttributes re){
-        if(afterLoginId==null){
-            re.addAttribute("writeBeforeLogin", "false");
+        if(afterLoginId.equals("")){
+            re.addFlashAttribute("writeBeforeLogin", "false");
             return "redirect:/main";
         }
-        if(afterLoginId!=null)
-            model.addAttribute("afterLoginId",afterLoginId);
+
+        model.addAttribute("afterLoginId",afterLoginId);
 
         return "writeOnBoard";
     }
 
     @PostMapping("/writeContent")
-    public String writeContent(WriteOnBoardModel writeOnBoardModel, RedirectAttributes re){
+    public String writeContent(
+                               @RequestParam String writingTitle,
+                               @RequestParam String writingContent,
+                               @RequestParam(defaultValue = "") String afterLoginId,
+                               RedirectAttributes re){
+
+        WriteOnBoardModel writeOnBoardModel =WriteOnBoardModel.builder()
+                .writingContent(writingContent)
+                .writingTitle(writingTitle)
+                .afterLoginId(afterLoginId).build();
 
         writeOnBoardService.actionWriteContent(writeOnBoardModel);
 

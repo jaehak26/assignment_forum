@@ -9,7 +9,7 @@
     <%
         request.setCharacterEncoding("UTF-8");
         Object inexist = request.getAttribute("inexist");
-        if(inexist == "true"){%>
+        if(inexist.equals("true")){%>
     <script>
         alert("아이디나 비밀번호가 일치하지 않습니다.");
     </script>

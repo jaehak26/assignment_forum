@@ -29,7 +29,7 @@ public class UserLoginService {
         if(result.isEmpty()){
             //error
             System.out.println("error");
-            return null;
+            return "";
         }
         ;
         //내용이 존재하면 내용을 프린트함

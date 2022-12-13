@@ -18,16 +18,17 @@
 <a href="/main">로그아웃</a></span>
 <hr>
 
-<form action="/writeContent" method="post">
+<form action="/fixContent/afterFix" method="post">
+    <input name="contentId" type="text" style="display: none;" value=${contentId}
     <label for="writingTitle">글 제목: </label>
     <input id="writingTitle" name="writingTitle" type="text"
-           style="width:400px;"  ><br>
+           style="width:400px;"  value=${fixTitle}><br>
     <label for="writingContent">글 내용: </label>
     <input id="writingContent" name="writingContent" type="text"
-    style="width:400px; height: 400px;" >
+           style="width:400px; height: 400px;" value=${fixContent}>
     <input name="afterLoginId" type="text" style="display: none;" value=${afterLoginId}>
     <br>
-    <input type="submit" value="글 작성">
+    <input type="submit" value="글 수정">
 </form>
 <br>
 <form action="/main/afterLogin" method="get">

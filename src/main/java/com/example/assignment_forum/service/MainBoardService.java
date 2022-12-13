@@ -31,7 +31,8 @@ public class MainBoardService {
     }
 
     public Page<WritingEntity> mainContentPage(Integer page, Integer size){
-        Page<WritingEntity> writingEntityPage = writingRepository.findAll(PageRequest.of(page,size));
+        Page<WritingEntity> writingEntityPage = writingRepository.findAll(PageRequest.of(page,size,
+                Sort.by("contentId").descending()));
 
         return writingEntityPage;
     }

@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -36,11 +37,12 @@ public class UserController {
     //InputLoginModel is form data
     public String userLogin(InputLoginModel loginModel, RedirectAttributes model){
 
+
         String afterLoginId = userLoginService.actionLogin(loginModel);
 
         String inexist = "false";
         //error
-        if(afterLoginId ==null){
+        if(afterLoginId.equals("")){
             inexist = "true";
             model.addAttribute("inexist", inexist);
             return "login";
@@ -48,21 +50,28 @@ public class UserController {
 
         model.addAttribute("afterLoginId", afterLoginId);
 
-        System.out.println(model);
+
         return "redirect:/main/afterLogin";
     }
 
+    @PostMapping("/user/register")
     public String userRegister(InputUserRegisterModel registerModel, RedirectAttributes model){
+
+        if(registerModel.getUserId().equals("")){
+            String invalidId = "true";
+            model.addAttribute("invalidId", invalidId);
+            return "userRegiser";
+        }
 
         String isUserExist = userRegisterService.isExistUser(registerModel);
 
-        if(isUserExist=="true"){
+        if(isUserExist.equals("true")){
             model.addAttribute("isUserExist",isUserExist);
             return "userRegister";
         }
 
         userRegisterService.actionUserRegister(registerModel);
-
+        model.addAttribute("isUserExist", isUserExist);
         return "redirect:/main";
     }
 }

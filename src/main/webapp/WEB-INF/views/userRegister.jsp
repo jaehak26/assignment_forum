@@ -10,7 +10,7 @@
     <%
         request.setCharacterEncoding("UTF-8");
         Object isUserExist = request.getAttribute("isUserExist");
-        if(isUserExist == "true"){%>
+        if(isUserExist.equals("true")){%>
     <script>
         alert("해당 아이디는 이미 있는 아이디입니다.");
     </script>
