@@ -33,6 +33,7 @@
 <hr>
 
 <div>
+
     <div>
         글 번호: ${contentId}
     </div>
@@ -52,18 +53,11 @@
 <form>
     <input name="afterLoginId" type="text" style="display: none;" value=${afterLoginId}>
     <input name="contentId" type="text" style="display: none;" value=${contentId}>
-    <input type="submit" value="글 목록" formmethod="get" formaction="/main/afterLogin">
+    <input type="submit" formmethod="get" formaction="/main/afterLogin" value="글 목록">
+    <input type="submit" formaction="/fixContent" formmethod="post" value="글 수정">
+    <input type="submit" formmethod="post" formaction="/deleteContent"  value="글 삭제">
 </form>
-<form action="/fixContent" method="post">
-    <input name="afterLoginId" type="text" style="display: none;" value=${afterLoginId}>
-    <input name="contentId" type="text" style="display: none;" value=${contentId}>
-    <input type="submit" value="글 수정">
-</form>
-<form>
-    <input name="afterLoginId" type="text" style="display: none;" value=${afterLoginId}>
-    <input name="contentId" type="text" style="display: none;" value=${contentId}>
-    <input type="submit" value="글 삭제" formmethod="post" formaction="/deleteContent">
-</form>
+
 
 
 </body>

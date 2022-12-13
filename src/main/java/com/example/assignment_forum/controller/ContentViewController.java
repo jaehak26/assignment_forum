@@ -63,9 +63,16 @@ public class ContentViewController {
         System.out.println(fixContent.getUserId().equals(afterLoginId));
         if(!fixContent.getUserId().equals(afterLoginId)){
 
-            re.addAttribute("afterLoginId", afterLoginId);
-            re.addAttribute("contentId",contentId);
-            re.addAttribute("vaildFix","false");
+            ViewContentModel viewContentModel = ViewContentModel.builder()
+                    .contentId(contentId)
+                    .afterLoginId(afterLoginId)
+                    .validFix("false")
+                    .build();
+
+            re.addAttribute("afterLoginId",viewContentModel.getAfterLoginId());
+            re.addAttribute("contentId",viewContentModel.getContentId());
+            re.addAttribute("validFix", viewContentModel.getValidFix());
+
             return "redirect:/viewContent";
         }
 

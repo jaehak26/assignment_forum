@@ -12,6 +12,6 @@ public class MainModel {
     private String writeBeforeLogin = "true";
     private String afterLoginId = "";
     private int page = 0;
-    private int size = 2;
+    private int size = 10;
     private String isUserExist = "";
 }

@@ -11,7 +11,7 @@ var requestOptions = {
 
 const PAGE = Number.parseInt(document.querySelector("#thisPage").innerHTML);
 console.log(PAGE)
-const SIZE = 2;
+const SIZE = 10;
 let mainContentPageUrl = `http://localhost:8080/mainContent/page?page=${PAGE}&size=${SIZE}`;
 
 const mainContentPageData = await fetchData(mainContentPageUrl, requestOptions);

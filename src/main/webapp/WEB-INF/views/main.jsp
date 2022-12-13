@@ -13,6 +13,7 @@
         Object writingEntityList = request.getAttribute("writingEntityList");
         int totalPages = (int)request.getAttribute("totalPages");
         int thisPage = (int)request.getAttribute("thisPage");
+        int PAGING_INDEXS = 5;
         if(isUserExist.equals("false")){ %>
         <script>
             alert("회원가입이 완료되었습니다.");
@@ -53,20 +54,19 @@
     </form>
 
     <br>
-    총페이지수 : ${totalPages}
-    <br>
+
     <%
-        int firstPager = ((int)(thisPage/5))*5;
-        if(firstPager >= 5){ %>
-    <form action="/main" method="post">
+        int firstPager = ((int)(thisPage/PAGING_INDEXS))*PAGING_INDEXS;
+        if(firstPager >= PAGING_INDEXS){ %>
+    <form action="/main" method="post" style="display: inline-block;">
         <%if(afterLoginId!=null){ %>
         <input name="afterLoginId" type="text" style="display: none;" value=${afterLoginId}>
         <% } %>
-        <input name="page" type="text" style="display: none;" value=<%=firstPager-5%>>
-        <input type="submit" value="다음">
+        <input name="page" type="text" style="display: none;" value=<%=firstPager-PAGING_INDEXS%>>
+        <input type="submit" value="이전" >
     </form>
 
-    <% }for(int idx=firstPager; idx< totalPages && idx<firstPager+5; idx++){
+    <% }for(int idx=firstPager; idx< totalPages && idx<firstPager+PAGING_INDEXS; idx++){
             int realPage = idx+1;
             String aRef = "/main/afterLogin?page="+idx;
             if(afterLoginId!=null){
@@ -75,15 +75,19 @@
     %>
         <a href=<%=aRef%>><%=realPage%></a>
     <% }
-        if(firstPager+5<totalPages){ %>
-        <form action="/main" method="post">
+        if(firstPager+PAGING_INDEXS<totalPages){ %>
+        <form action="/main" method="post" style="display: inline-block;">
             <input name="afterLoginId" type="text" style="display: none;" value=${afterLoginId}>
-            <input name="page" type="text" style="display: none;" value=<%=firstPager+5%>>
+            <input name="page" type="text" style="display: none;" value=<%=firstPager+PAGING_INDEXS%>>
             <input type="submit" value="다음">
         </form>
     <%
         }
     %>
+    <br>
+    총페이지수 : ${totalPages}
+    <br>
+    <br>
 
     <script src="mainContentBody.js" type="module"></script>
 </body>

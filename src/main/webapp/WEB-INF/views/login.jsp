@@ -24,9 +24,9 @@
     <form id="userLogin" name="InputLoginModel" action="/user/login" method="post"
     >
         <label for="loginId">아이디:</label>
-        <input type="text" name="loginId" id="loginId" value="abcd"/><br>
+        <input type="text" name="loginId" id="loginId" ><br>
         <label for="loginPwd">비밀번호:</label>
-        <input type="password" name="loginPwd" id="loginPwd" value="1234"/><br>
+        <input type="password" name="loginPwd" id="loginPwd" ><br>
         <input type="submit" value="로그인"/>
     </form>
     <hr>
